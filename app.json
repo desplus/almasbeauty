@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Almas Beauty",
+    "slug": "fullwebview",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "androidStatusBar": {
+      "hidden": true
+    },
+    "android": {
+      "package": "com.almas.beauty",
+      "versionCode": 1
+    },
+    "ios": {
+      "bundleIdentifier": "com.almas.beauty",
+      "supportsTablet": false,
+      "buildNumber": "1.0.0"
+    }
+  }
+}
