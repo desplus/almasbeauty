@@ -1,40 +1,23 @@
 workflows:
-  expo-react-native:
-    name: Expo React Native Build
+  expo_build:
+    name: Expo Build (Android & iOS)
     max_build_duration: 60
     environment:
       vars:
-        EXPO_CLI_VERSION: latest
+        EXPO_TOKEN: $EXPO_TOKEN   # برای login خودکار Expo
       node: latest
-      yarn: true
-
     scripts:
       - name: Install dependencies
-        script: |
-          yarn install
-
-      - name: Install Expo CLI
-        script: |
-          yarn global add expo-cli
-
+        script: yarn install
+      - name: Login to Expo
+        script: npx expo login --token $EXPO_TOKEN
       - name: Build Android APK
-        script: |
-          expo build:android -t apk --non-interactive
-
+        script: npx expo build:android -t apk --non-interactive
       - name: Build Android AAB
-        script: |
-          expo build:android -t app-bundle --non-interactive
-
+        script: npx expo build:android -t app-bundle --non-interactive
       - name: Build iOS IPA
-        script: |
-          expo build:ios --non-interactive
-
+        script: npx expo build:ios --non-interactive
     artifacts:
-      - "**/*.apk"
-      - "**/*.aab"
-      - "**/*.ipa"
-
-    publishing:
-      email:
-        recipients:
-          - YOUR_EMAIL@gmail.com
+      - dist/*.apk
+      - dist/*.aab
+      - dist/*.ipa
