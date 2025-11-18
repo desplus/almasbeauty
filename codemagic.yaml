@@ -1,0 +1,40 @@
+workflows:
+  expo-react-native:
+    name: Expo React Native Build
+    max_build_duration: 60
+    environment:
+      vars:
+        EXPO_CLI_VERSION: latest
+      node: latest
+      yarn: true
+
+    scripts:
+      - name: Install dependencies
+        script: |
+          yarn install
+
+      - name: Install Expo CLI
+        script: |
+          yarn global add expo-cli
+
+      - name: Build Android APK
+        script: |
+          expo build:android -t apk --non-interactive
+
+      - name: Build Android AAB
+        script: |
+          expo build:android -t app-bundle --non-interactive
+
+      - name: Build iOS IPA
+        script: |
+          expo build:ios --non-interactive
+
+    artifacts:
+      - "**/*.apk"
+      - "**/*.aab"
+      - "**/*.ipa"
+
+    publishing:
+      email:
+        recipients:
+          - YOUR_EMAIL@gmail.com
